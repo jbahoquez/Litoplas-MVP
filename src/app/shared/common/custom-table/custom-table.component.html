@@ -1,0 +1,26 @@
+<div class="itemList">
+  <table class="customTable" >
+
+    <thead>
+      <tr>
+        <th *ngFor="let columnHead of tableData.headers">{{columnHead.description}}</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let us of usersData"> -->
+      <tr *ngFor="let columnsData of tableData.dataColumns">
+        <td *ngFor="let columnsHead of tableData.headers">
+          <span class="actions" *ngIf="columnsHead.field==='actions'">
+            <fa-icon (click)="onUpdateClick(columnsData)" class="icon" [icon]="getIcon('faPencil')"></fa-icon>
+            <fa-icon (click)="onDeleteClick(columnsData)" class="icon" [icon]="getIcon('faTrash')"></fa-icon>
+          </span>
+          <span *ngIf="columnsHead.field!=='actions'">
+            {{columnsData[columnsHead.field]}}
+          </span>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>Count: {{countRender()}}</p>

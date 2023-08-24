@@ -1,0 +1,54 @@
+<section class="wrapper">
+  <h1 class="title">Administrador de permisos</h1>
+
+  <div class="permissionsForm">
+    <form (ngSubmit)="processData(); formPermission.reset(permissionDefault)" #formPermission="ngForm">
+      <div class="form-group">
+        <label for="">Nombre de permiso</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="permission.name"
+               name="name"
+               #name="ngModel"
+               required>
+        <span *ngIf="!name.valid && !name.pristine" class="hint">Campo requerido</span>
+      </div>
+
+      <div class="form-group">
+        <label for="">Descripcion</label>
+        <input type="text"
+               class="form-control"
+               [(ngModel)]="permission.description"
+               name="description"
+               #description="ngModel"
+               required>
+        <span *ngIf="!description.valid && !description.pristine" class="hint">Campo requerido</span>
+      </div>
+
+        <div class="form-group">
+          <button [disabled]="!formPermission.valid">Guardar</button>
+        </div>
+
+
+    </form>
+  </div>
+  <div class="permissionsList">
+    <table class="customTable" >
+
+      <thead>
+        <tr>
+          <th>Permiso</th>
+          <th>Descripcion</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let per of permissionsData">
+          <td>{{per.name | textTransform: '-'}}</td>
+          <td>{{per.description}}</td>
+          <td>{{per.isActive ? 'Activo' : 'Inactivo'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

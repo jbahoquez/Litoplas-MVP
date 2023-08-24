@@ -1,0 +1,102 @@
+<section class="wrapper">
+  <h1 class="title">Administrador de usuarios</h1>
+
+  <div class="userForm">
+    <form [formGroup]="formUser" (ngSubmit)="addUser()">
+      <div class="form-group">
+        <label for="">Nombre</label>
+        <input type="text"
+               class="form-control"
+               name="name"
+               formControlName="name"
+               >
+               <!-- <span [hidden]="formUser.get('name')?.valid || formUser.get('name')?.pristine" class="hint">Campo requerido</span> -->
+               <!-- <span [hidden]="name?.valid || name?.pristine" class="hint">Campo requerido</span> -->
+               <span *ngIf="!getFormControl('name')?.valid && !getFormControl('name')?.pristine" class="hint">Campo requerido</span>
+      </div>
+
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="email"
+               class="form-control"
+               name="email"
+               formControlName="email"
+               >
+               <span *ngIf="!getFormControl('email')?.valid && !getFormControl('email')?.pristine " class="hint">
+                {{getFormControl('email')?.errors?.['required'] && 'Campo requerido'}}
+                {{getFormControl('email')?.errors?.['pattern'] && 'Formato Email Incorecto'}}
+              </span>
+
+               <!-- <span [hidden]="email.valid || email.pristine || !email.errors?.['email']" class="hint">Formato Email Incorecto</span> -->
+      </div>
+
+      <div class="form-group">
+        <label for="">Telefono</label>
+        <input type="text"
+               class="form-control"
+               name="telefono"
+               formControlName="telefono"
+               required>
+               <!-- <span [hidden]="telefono.valid || telefono.pristine" class="hint">Campo requerido</span> -->
+               <div *ngIf="!getFormControl('telefono')?.valid && !getFormControl('telefono')?.pristine" class="hint">
+                <span>{{getFormControl('telefono')?.errors?.['required'] && 'Campo requerido'}}</span>
+                <span>{{getFormControl('telefono')?.errors?.['minlength'] && 'Minimo 7 caracteres'}}</span>
+                <span>{{getFormControl('telefono')?.errors?.['maxlength'] && 'Máximo 10 caracteres'}}</span>
+                <span>{{getFormControl('telefono')?.errors?.['pattern'] && ' / Solo numeros'}}</span>
+              </div>
+      </div>
+      <div class="form-group">
+        <label for="">Contraseña</label>
+        <input type="text"
+               class="form-control"
+               name="password"
+               formControlName="password"
+               >
+               <span *ngIf="!getFormControl('password')?.valid && !getFormControl('password')?.pristine" class="hint">Campo requerido</span>
+               <!-- <span [hidden]="password.valid || password.pristine" class="hint">Campo requerido</span> -->
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="formUser.invalid">Guardar</button>
+      </div>
+
+
+    </form>
+  </div>
+  <!-- <div class="permissionsList">
+    <table class="customTable" >
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Correo</th>
+          <th>Telefono</th>
+          <th>Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let us of usersData">
+          <td>{{us.name}}</td>
+          <td>{{us.email}}</td>
+          <td>{{us.telefono}}</td>
+          <td>{{us.password}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+<app-table-info></app-table-info>
+<app-custom-table (onUpdate)="onUpdateTable($event)" (onDelete)="onDeleteTable($event)" [tableData]="tableData"></app-custom-table>
+
+</section>
+{{formUser.valid}}
+{{formUser.get('name')?.valid}}
+{{formUser.get('email')?.valid}}
+{{formUser.get('telefono')?.valid}}
+{{formUser.get('password')?.valid}}
+<!--
+{{name.valid}}
+{{email.valid}}
+{{telefono.valid}}
+{{password.valid}} -->
+

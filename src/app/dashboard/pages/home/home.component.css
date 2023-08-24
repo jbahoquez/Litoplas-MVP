@@ -1,0 +1,91 @@
+.content{
+  width: 100%;
+  height: 100vh;
+  background-color: #8dc6ff;
+  padding: 0;
+}
+
+/* =================Navbar====================== */
+
+.nav-container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  padding: 10px 15px;
+  align-items: center;
+  box-sizing: border-box;
+  /* background-color: red; */
+  justify-content: space-between;
+}
+
+.nav-container .menu-section {
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-container .menu-section .icon{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.nav-container .menu-section img{
+  max-width: 160px;
+}
+
+.nav-container .notification-section {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.nav-container .notification-section .icons{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.nav-container .notification-section .account-button {
+  font-family: 'Open Sans', sans-serif;
+  padding: 2px 4px;
+  border-radius: 5px;
+  background-color: #ececec;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+/* ======================================= */
+
+.body-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  padding-top:60px;
+}
+
+
+
+.menu-items {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 30px;
+}
+
+

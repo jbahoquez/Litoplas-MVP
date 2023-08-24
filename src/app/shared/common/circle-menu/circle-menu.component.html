@@ -1,0 +1,9 @@
+<div class="content" (click)="onClickButton(menu.id || 0)">
+  <div class='item' [style]="getColor()">
+    <i class="">
+      <fa-icon class="icon" [style]="getColorFont()" [icon]="menu.icon"></fa-icon>
+    </i>
+    <p *ngIf="!menu.icon" class="name">{{menu.name}}</p>
+  </div>
+  <p *ngIf="menu.description" class="description">{{ menu.description | titlecase }}</p>
+</div>

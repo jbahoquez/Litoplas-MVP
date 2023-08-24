@@ -1,0 +1,11 @@
+
+<section class="content">
+
+  <section class="body-container">
+    <!-- Aca va el profile -->
+    <article class="menu-items">
+      <app-circle-menu (emitData)="menuClicked( $event )" *ngFor="let item of menus" [menu]='item'></app-circle-menu>
+    </article>
+  </section>
+
+</section>

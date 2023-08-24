@@ -1,0 +1,37 @@
+table.customTable{
+  background-color: white;
+  border-collapse: collapse;
+  border-color: #397dfa;
+  border-width: 2px;
+  border-style: solid;
+  color: black;
+  width: 100%;
+}
+
+table.customTable td, table.customTable th{
+  padding: 5px;
+  border-width: 2px;
+  text-align: center;
+  border-style: solid;
+  border-color: #7ea8f8;
+}
+
+table.customTable th{
+  background-color: #7ea8f8;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #397dfa;
+}
+
+table.customTable td .actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+}
+table.customTable span{
+  width: 40px;
+  height: 40px;
+
+}

@@ -1,0 +1,116 @@
+
+.profile {
+  width: 30%;
+  background-color: #93deff;
+  height: 80vh;
+}
+
+.profileHeader {
+  width: 100%;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding:10px;
+  background-image: url('/assets/nubes.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: white;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.profileHeader .message {
+  display: flex;
+  align-items: center;
+  gap:5px;
+  font-size: 11px;
+}
+
+.profileHeader .message p {
+  margin: 0;
+  padding: 8px;
+  background-color: #8dc6ff;
+  border-radius: 20px;
+}
+
+.summary {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.summaryWrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  border-bottom: 1px solid #9ba6a5;
+  padding-bottom: 10px;
+}
+
+.sumarySection {
+  font-family: 'Open Sans', sans-serif;
+  padding-right: 10px;
+  border-right: 1px solid #9ba6a5;
+}
+
+.sumarySection:last-child {
+  border-right: none;
+}
+
+.sumarySection #counter {
+  font-weight: 600;
+}
+
+.sumary .sumarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#counter, #description{
+  margin: 0;
+  padding: 0;
+}
+
+#description {
+  font-size: 12px;
+}
+
+.profileHeader .message .icon {
+  font-size: 1rem;
+  color:#2d4059;
+
+}
+
+.profile .body {
+  padding: 20px;
+}
+
+.profile .body ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile .body ul li {
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.profile .body ul li p:first-child {
+  padding: 10px;
+  width:20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
