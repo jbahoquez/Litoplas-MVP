@@ -1,8 +1,9 @@
-
 .profile {
-  width: 30%;
-  background-color: #93deff;
-  height: 80vh;
+  width: 100%;
+  /* background-color: #93deff; */
+  background-color: #0099ff33;
+  height: 70vh;
+  border-radius: 50px;
 }
 
 .profileHeader {
@@ -13,20 +14,23 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
-  padding:10px;
-  background-image: url('/assets/nubes.jpeg');
+  padding: 10px;
+  /* background-image: url('/assets/nubes.jpeg');
   background-size: cover;
-  background-repeat: no-repeat;
-  background-color: white;
+  background-repeat: no-repeat; */
+  /* background-color: white; */
   box-sizing: border-box;
   font-family: 'Open Sans', sans-serif;
+  border-radius: 50px;
 }
 
 .profileHeader .message {
+
   display: flex;
   align-items: center;
-  gap:5px;
-  font-size: 11px;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .profileHeader .message p {
@@ -70,7 +74,8 @@
   gap: 2px;
 }
 
-#counter, #description{
+#counter,
+#description {
   margin: 0;
   padding: 0;
 }
@@ -81,14 +86,24 @@
 
 .profileHeader .message .icon {
   font-size: 1rem;
-  color:#2d4059;
+  color: #2d4059;
 
 }
 
 .profile .body {
-  padding: 20px;
+  animation: moveEffect 2s ease-in-out infinite alternate;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.322);
+  border-radius: 50px;
 }
-
+@keyframes moveEffect {
+  0% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(10px);
+  }
+}
 .profile .body ul {
   list-style: none;
   margin: 0;
@@ -105,7 +120,7 @@
 
 .profile .body ul li p:first-child {
   padding: 10px;
-  width:20px;
+  width: 20px;
   height: 20px;
   background: red;
   border-radius: 50%;
@@ -113,4 +128,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.noticia {
+  font-size: large;
+  text-align: center;
+  color: white;
 }

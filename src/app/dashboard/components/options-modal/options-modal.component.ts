@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {faCoffee, faHouse, faClose, faHamburger, faCar,  IconDefinition, faMessage, faBars, faHomeAlt, faStar, faFlag, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { OptionsModalComponent } from '../../components/options-modal/options-modal.component';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 interface Menu {
   id?: number;
@@ -29,13 +26,12 @@ const icons: any = {
   faGear: faGear
 }
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-options-modal',
+  templateUrl: './options-modal.component.html',
+  styleUrls: ['./options-modal.component.css']
 })
-export class HomeComponent implements OnInit {
+export class OptionsModalComponent {
 
   messageIcon: IconDefinition = faMessage;
 
@@ -135,18 +131,5 @@ export class HomeComponent implements OnInit {
 
   ];
 
-  constructor(private bottomSheet: MatBottomSheet) { }
-
-  ngOnInit(): void {
-  }
-
-  menuClicked(id: number) {
-    // alert(`menu clickeado ${id}`);
-    // const hostname = window.location.hostname;
-    // alert(`Nombre del equipo ${hostname}`)
-    // const modalRef = this.modalService.open(OptionsModalComponent);
-    // modalRef.componentInstance.menuId = id;
-    //this.bottomSheet.open(OptionsModalComponent);
-  }
 
 }

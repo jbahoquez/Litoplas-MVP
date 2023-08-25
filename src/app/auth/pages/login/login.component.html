@@ -1,12 +1,18 @@
 <div class="content">
   <div class="login-container">
+    <div class="complement">
+
+    </div>
     <div class="form">
-        <p>Login</p>
-        <input type="text" [(ngModel)]='username' placeholder="Usuario">
-        <input type="password" [(ngModel)]='password' placeholder="Contraseña">
-        <button (click)="onLoginClick()">Iniciar sesion</button>
-        <a routerLink="/home">Olvide mi contraseña</a>
-        <div *ngIf="hasError" class="alert">{{error}}</div>
+        <div class="form-content">
+          <img src="/assets/silp gris.png" alt="">
+          <input type="text" [(ngModel)]='username' placeholder="Usuario">
+          <input type="password" [(ngModel)]='password' placeholder="Contraseña">
+          <button (click)="onLoginClick()">Iniciar sesion</button>
+          <a routerLink="/dashboard/home">Olvide mi contraseña</a>
+          <div *ngIf="hasError" class="alert">{{error}}</div>
+        </div>
+
     </div>
   </div>
 </div>

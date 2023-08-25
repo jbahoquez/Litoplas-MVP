@@ -8,6 +8,7 @@ interface Menu {
   icon: IconDefinition;
   color?: string;
   iconColor?: string;
+  ruta?: string;
 }
 
 @Component({
@@ -24,10 +25,11 @@ export class CircleMenuComponent implements OnInit {
     description: '',
     icon: faCoffee,
     color: '',
-    iconColor: '' 
+    iconColor: '',
+    ruta: '',
   }
 
-  constructor() { 
+  constructor() {
     this.emitData = new EventEmitter<number>();
   }
 
@@ -35,7 +37,13 @@ export class CircleMenuComponent implements OnInit {
   }
 
   getColor(): string {
-    return this.menu.color ? `background-color: ${this.menu.color}` : '';
+    if (this.menu.color) {
+      const rgbaColor = this.hexToRgba(this.menu.color, 0.3); // Cambia 0.5 al valor de opacidad deseado
+      return `background-color: ${rgbaColor}`;
+    } else {
+      return '';
+    }
+    // return this.menu.color ? `background-color: ${this.menu.color}` : '';
   }
 
   getColorFont(): string {
@@ -43,9 +51,17 @@ export class CircleMenuComponent implements OnInit {
   }
 
   onClickButton(menuId: number ) {
+
     if(menuId) this.emitData.emit(menuId)
   }
 
+  hexToRgba(hex: string, opacity: number): string {
+    // Convierte el valor hexadecimal a RGBA
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+  }
 
 
 }
