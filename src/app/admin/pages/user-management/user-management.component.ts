@@ -8,11 +8,12 @@ interface UrlParams {
   userID: string
 }
 interface User {
-  _id?: string;
+
   name: string;
   email: string;
-  telefono: string;
-  password: string;
+  phone: string;
+  role: string;
+  id_d?: string;
 }
 
 interface TableData {
@@ -55,9 +56,9 @@ export class UserManagementComponent implements OnInit {
   tableData: TableData = {
     headers: [
       { description: 'Nombre de usuario', field: 'name' },
-      { description: 'Telefono', field: 'telefono' },
+      { description: 'Phone', field: 'phone' },
       { description: 'Correo Electronico', field: 'email' },
-      { description: 'Contraseña', field: 'password' },
+      { description: 'Role', field: 'role' },
       { description: 'Acciones', field: 'actions' }
     ],
     dataColumns: []
@@ -71,9 +72,9 @@ export class UserManagementComponent implements OnInit {
   formUser = this.fb.group({
     "name": ['', Validators.required],
     "email": ['', [Validators.required, Validators.pattern(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/)]],
-    "telefono": ['', [Validators.minLength(7), Validators.maxLength(10), Validators.pattern(/^([0-9])*$/)]],
-    "password": ['', Validators.required],
-    "_id": ['']
+    "phone": ['', [Validators.minLength(7), Validators.maxLength(10), Validators.pattern(/^([0-9])*$/)]],
+    "role": ['', Validators.required],
+    "id_d": ['']
     //,
     // "workInformation" : this.fb.group({
     //   "companyPosition":['',Validators.required]
@@ -133,37 +134,55 @@ export class UserManagementComponent implements OnInit {
     })
   }
 
+  proccessUser(){
+    console.log('Click')
+    const user=this.formUser.value;
+    if(!user.id_d) this.addUser()
+    if (user.id_d) this.updateUser()
+
+  }
   addUser(): void {
-    const id = this.formUser.value._id;
-    if (id) {
-      const userTemp = JSON.parse(JSON.stringify(this.formUser.value))
-      this.updateUser(userTemp);
-      console.log('Actualizando usuario')
-    } else {
-      const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
+    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
       this.userService.addNewUser(tempUser).subscribe(user => {
         this.users.push(user)
         this.setDataTable()
 
         //this.getUsers()
       })
-      console.log('Creando usuario')
-    }
+    // const id = this.formUser.value.id_d;
+    // if (id) {
+    //   const userTemp = JSON.parse(JSON.stringify(this.formUser.value))
+    //   this.updateUser(userTemp);
+    //   console.log('Actualizando usuario')
+    // } else {
+    //   const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
+    //   this.userService.addNewUser(tempUser).subscribe(user => {
+    //     this.users.push(user)
+    //     this.setDataTable()
+
+    //     //this.getUsers()
+    //   })
+    //   console.log('Creando usuario')
+    // }
   }
 
+
+
   deleteUser(user: User) {
-    this.userService.deleteUsers(user._id!).subscribe(resp => {
+    this.userService.deleteUsers(user.id_d!).subscribe(resp => {
 
     })
 
   }
 
-  updateUser(user: User) {
-    this.userService.updateUsers(user).subscribe(resp => {
-      const userTemp: User[] = this.users.filter(user => user._id !== user._id)
-      this.users = [...userTemp, user]
+  updateUser() {
+    console.log('Uodate')
+    const {id_d,name,email,role,phone}:User = JSON.parse(JSON.stringify(this.formUser.value))
+    this.userService.updateUsers({name,email,role,phone},id_d!).subscribe((user: any) => {
+      const userIndex=this.users.findIndex(u=>user.id_d===u.id_d)
+      this.users[userIndex]={...user}
       this.setDataTable()
-      this.formUser.reset()
+      //this.formUser.reset()
     })
   }
 
@@ -172,8 +191,9 @@ export class UserManagementComponent implements OnInit {
 
     // this.deleteUser(item)
     // this.getUsers()
-    this.userService.deleteUsers(item._id!).subscribe(user => {
-      const userTemp: User[] = this.users.filter(user => user._id !== item._id)
+
+    this.userService.deleteUsers(item.id_d!).subscribe(user => {
+      const userTemp: User[] = this.users.filter(user => user.id_d !== item.id_d)
       this.users = [...userTemp]
       this.setDataTable()
     })
@@ -181,12 +201,13 @@ export class UserManagementComponent implements OnInit {
 
   onUpdateTable(item: User) {
 
+    console.log(item)
     this.formUser.setValue({
       name: item.name,
       email: item.email,
-      password: item.password,
-      telefono: item.telefono,
-      _id: item._id!
+      phone: item.phone,
+      role:item.role,
+      id_d: item.id_d!
     })
     // this.userService.updateUsers(item).subscribe(resp =>{
     //   const userTemp: User[] = this.users.filter(user => user._id !== item._id)

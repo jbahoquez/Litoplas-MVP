@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
 
   isLoggetIn(): boolean{
 
-    return false;
+    return !!localStorage.getItem('token')
   }
 
 }

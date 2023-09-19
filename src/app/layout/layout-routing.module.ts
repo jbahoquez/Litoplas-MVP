@@ -17,8 +17,8 @@ const routes: Routes = [
     path: '',
     component: UserLayoutComponent,
     children:[
-      {path: 'dashboard', loadChildren: () => DashboardModule},
-      {path: 'admin', loadChildren: () => AdminModule },
+      {path: 'dashboard', loadChildren: () => DashboardModule, canActivate: [AuthGuard]},
+      {path: 'admin', loadChildren: () => AdminModule, canActivate: [AuthGuard] },
     ]
   },
   {

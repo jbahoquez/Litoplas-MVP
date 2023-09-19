@@ -10,7 +10,8 @@
   box-sizing: border-box;
   margin: 0 auto;
   max-width: 85%;
-  background-color: rgba(255, 255, 255, 0.842);
+  /* background-color: rgba(255, 255, 255, 0.178); */
+  background-color: #caf0f869;
   border-radius: 8px;
   min-height: calc(95vh - 100px);
 

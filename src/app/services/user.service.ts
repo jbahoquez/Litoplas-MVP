@@ -5,11 +5,12 @@ import { environment } from 'src/environments/environment';
 
 
 interface User{
-  _id?: string;
   name:string;
   email:string;
-  telefono: string;
-  password: string;
+  phone: string;
+  role: string;
+  id_d?: string;
+
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ interface User{
 })
 
 export class UserService {
-  private readonly API_URL=`${environment.api}/users`;
+  private readonly API_URL=`${environment.api}/user`;
   private contUser$ = new BehaviorSubject<number>(0)
 
   get totalUsers(): Observable<number>{
@@ -52,7 +53,7 @@ export class UserService {
 
   addNewUser(user: User): Observable<User>{
     const body={...user};
-    delete body._id
+    delete body.id_d
     //console.log(this.API_URL, body)
     return this.http.post<User>(this.API_URL, body)
   }
@@ -65,9 +66,9 @@ export class UserService {
     return this.http.delete<void>(`${this.API_URL}/${id}`)
   }
 
-  updateUsers(user: User): Observable<void>{
-    const body=user;
-    return this.http.put<void>(`${this.API_URL}/${user._id}`,body)
+  updateUsers(user: User, id_d:string): Observable<void>{
+    const body={...user};
+    return this.http.put<void>(`${this.API_URL}/${id_d}`,body)
   }
 
 }

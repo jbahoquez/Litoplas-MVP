@@ -2,7 +2,7 @@
   <h1 class="title">Administrador de usuarios</h1>
 
   <div class="userForm">
-    <form [formGroup]="formUser" (ngSubmit)="addUser()">
+    <form [formGroup]="formUser" (ngSubmit)="proccessUser()">
       <div class="form-group">
         <label for="">Nombre</label>
         <input type="text"
@@ -34,25 +34,25 @@
         <label for="">Telefono</label>
         <input type="text"
                class="form-control"
-               name="telefono"
-               formControlName="telefono"
+               name="phone"
+               formControlName="phone"
                required>
-               <!-- <span [hidden]="telefono.valid || telefono.pristine" class="hint">Campo requerido</span> -->
-               <div *ngIf="!getFormControl('telefono')?.valid && !getFormControl('telefono')?.pristine" class="hint">
-                <span>{{getFormControl('telefono')?.errors?.['required'] && 'Campo requerido'}}</span>
-                <span>{{getFormControl('telefono')?.errors?.['minlength'] && 'Minimo 7 caracteres'}}</span>
-                <span>{{getFormControl('telefono')?.errors?.['maxlength'] && 'Máximo 10 caracteres'}}</span>
-                <span>{{getFormControl('telefono')?.errors?.['pattern'] && ' / Solo numeros'}}</span>
+               <!-- <span [hidden]="phone.valid || phone.pristine" class="hint">Campo requerido</span> -->
+               <div *ngIf="!getFormControl('phone')?.valid && !getFormControl('phone')?.pristine" class="hint">
+                <span>{{getFormControl('phone')?.errors?.['required'] && 'Campo requerido'}}</span>
+                <span>{{getFormControl('phone')?.errors?.['minlength'] && 'Minimo 7 caracteres'}}</span>
+                <span>{{getFormControl('phone')?.errors?.['maxlength'] && 'Máximo 10 caracteres'}}</span>
+                <span>{{getFormControl('phone')?.errors?.['pattern'] && ' / Solo numeros'}}</span>
               </div>
       </div>
       <div class="form-group">
-        <label for="">Contraseña</label>
+        <label for="">Rol</label>
         <input type="text"
                class="form-control"
-               name="password"
-               formControlName="password"
+               name="role"
+               formControlName="role"
                >
-               <span *ngIf="!getFormControl('password')?.valid && !getFormControl('password')?.pristine" class="hint">Campo requerido</span>
+               <span *ngIf="!getFormControl('role')?.valid && !getFormControl('role')?.pristine" class="hint">Campo requerido</span>
                <!-- <span [hidden]="password.valid || password.pristine" class="hint">Campo requerido</span> -->
       </div>
 
