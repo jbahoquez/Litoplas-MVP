@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface Login{
-  email:string;
+  n_ide:string;
   password: string;
 }
 

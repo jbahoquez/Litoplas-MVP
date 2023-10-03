@@ -7,13 +7,32 @@ import { IconDefinition, faCoffee, faHouse, faTrash } from '@fortawesome/free-so
 interface UrlParams {
   userID: string
 }
-interface User {
+// interface User {
 
-  name: string;
-  email: string;
-  phone: string;
-  role: string;
-  id_d?: string;
+//   name: string;
+//   email: string;
+//   phone: string;
+//   role: string;
+//   id_d?: string;
+// }
+
+interface IIntranetUsuarios{
+  n_ide:           string;
+  password:        string;
+  mail?:           string;
+  nombre?:         string;
+  fecha?:          Date | null;
+  usuario?:        string;
+  estado?:         string;
+  peticiones?:     string;
+  incidentes?:     string;
+  fecha_password?: Date | null;
+  fecha_retiro?:   Date | null;
+  c_emp?:          string;
+  bloqueado?:      string;
+  salt?:           string;
+  roles_id:        number;
+  perfiles_id:     number;
 }
 
 interface TableData {
@@ -33,7 +52,7 @@ interface DataKeys {
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-  users: User[] = [];
+  users: IIntranetUsuarios[] = [];
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) { }
 
 
@@ -55,10 +74,10 @@ export class UserManagementComponent implements OnInit {
 
   tableData: TableData = {
     headers: [
-      { description: 'Nombre de usuario', field: 'name' },
-      { description: 'Phone', field: 'phone' },
-      { description: 'Correo Electronico', field: 'email' },
-      { description: 'Role', field: 'role' },
+      { description: 'Nombre de usuario', field: 'nombre' },
+      { description: 'Phone', field: 'n_ide' },
+      { description: 'Correo Electronico', field: 'mail' },
+      { description: 'Role', field: 'c_emp' },
       { description: 'Acciones', field: 'actions' }
     ],
     dataColumns: []
@@ -74,7 +93,7 @@ export class UserManagementComponent implements OnInit {
     "email": ['', [Validators.required, Validators.pattern(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/)]],
     "phone": ['', [Validators.minLength(7), Validators.maxLength(10), Validators.pattern(/^([0-9])*$/)]],
     "role": ['', Validators.required],
-    "id_d": ['']
+    "n_ide": ['']
     //,
     // "workInformation" : this.fb.group({
     //   "companyPosition":['',Validators.required]
@@ -116,7 +135,7 @@ export class UserManagementComponent implements OnInit {
   processData() {
 
     //console.log(this.formUser.value)
-    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
+    const tempUser: IIntranetUsuarios = JSON.parse(JSON.stringify(this.formUser.value))
     //this.userService.saveUser(tempUser)
     //console.log(this.formUser.valid)
     //this.usersData.push(tempUser)
@@ -131,18 +150,19 @@ export class UserManagementComponent implements OnInit {
     this.userService.getUsers().subscribe(users => {
       this.users = users
       this.setDataTable();
+      console.log(users)
     })
   }
 
   proccessUser(){
     console.log('Click')
     const user=this.formUser.value;
-    if(!user.id_d) this.addUser()
-    if (user.id_d) this.updateUser()
+    if(!user.n_ide) this.addUser()
+    //if (user.id_d) this.updateUser()
 
   }
   addUser(): void {
-    const tempUser: User = JSON.parse(JSON.stringify(this.formUser.value))
+    const tempUser: IIntranetUsuarios = JSON.parse(JSON.stringify(this.formUser.value))
       this.userService.addNewUser(tempUser).subscribe(user => {
         this.users.push(user)
         this.setDataTable()
@@ -168,52 +188,52 @@ export class UserManagementComponent implements OnInit {
 
 
 
-  deleteUser(user: User) {
-    this.userService.deleteUsers(user.id_d!).subscribe(resp => {
+  deleteUser(user: IIntranetUsuarios) {
+    this.userService.deleteUsers(user.n_ide!).subscribe(resp => {
 
     })
 
   }
 
-  updateUser() {
-    console.log('Uodate')
-    const {id_d,name,email,role,phone}:User = JSON.parse(JSON.stringify(this.formUser.value))
-    this.userService.updateUsers({name,email,role,phone},id_d!).subscribe((user: any) => {
-      const userIndex=this.users.findIndex(u=>user.id_d===u.id_d)
-      this.users[userIndex]={...user}
-      this.setDataTable()
-      //this.formUser.reset()
-    })
-  }
+  // updateUser() {
+  //   console.log('Uodate')
+  //   const {n_ide,mail,nombre, usuario,c_emp}:IIntranetUsuarios = JSON.parse(JSON.stringify(this.formUser.value))
+  //   this.userService.updateUsers({nombre,mail,usuario,c_emp},n_ide!).subscribe((user: any) => {
+  //     const userIndex=this.users.findIndex(u=>user.n_ide===u.n_ide)
+  //     this.users[userIndex]={...user}
+  //     this.setDataTable()
+  //     //this.formUser.reset()
+  //   })
+  // }
 
-  onDeleteTable(item: User) {
+  onDeleteTable(item: IIntranetUsuarios) {
     // console.log(item, 'delete on user management')
 
     // this.deleteUser(item)
     // this.getUsers()
 
-    this.userService.deleteUsers(item.id_d!).subscribe(user => {
-      const userTemp: User[] = this.users.filter(user => user.id_d !== item.id_d)
+    this.userService.deleteUsers(item.n_ide!).subscribe(user => {
+      const userTemp: IIntranetUsuarios[] = this.users.filter(user => user.n_ide !== item.n_ide)
       this.users = [...userTemp]
       this.setDataTable()
     })
   }
 
-  onUpdateTable(item: User) {
+  // onUpdateTable(item: IIntranetUsuarios) {
 
-    console.log(item)
-    this.formUser.setValue({
-      name: item.name,
-      email: item.email,
-      phone: item.phone,
-      role:item.role,
-      id_d: item.id_d!
-    })
-    // this.userService.updateUsers(item).subscribe(resp =>{
-    //   const userTemp: User[] = this.users.filter(user => user._id !== item._id)
-    //   this.users=[...userTemp, item]
-    //   this.setDataTable()
-    // })
-  }
+  //   console.log(item)
+  //   this.formUser.setValue({
+  //     name: item.nombre,
+  //     email: item.mail,
+  //     phone: item.phone,
+  //     role:item.role,
+  //     id_d: item.id_d!
+  //   })
+  //   // this.userService.updateUsers(item).subscribe(resp =>{
+  //   //   const userTemp: User[] = this.users.filter(user => user._id !== item._id)
+  //   //   this.users=[...userTemp, item]
+  //   //   this.setDataTable()
+  //   // })
+  // }
 
 }

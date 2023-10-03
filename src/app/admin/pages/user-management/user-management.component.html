@@ -86,8 +86,8 @@
   </div> -->
 
 <app-table-info></app-table-info>
-<app-custom-table (onUpdate)="onUpdateTable($event)" (onDelete)="onDeleteTable($event)" [tableData]="tableData"></app-custom-table>
-
+<!-- <app-custom-table (onUpdate)="onUpdateTable($event)" (onDelete)="onDeleteTable($event)" [tableData]="tableData"></app-custom-table> -->
+<app-custom-table  (onDelete)="onDeleteTable($event)" [tableData]="tableData"></app-custom-table>
 </section>
 {{formUser.valid}}
 {{formUser.get('name')?.valid}}

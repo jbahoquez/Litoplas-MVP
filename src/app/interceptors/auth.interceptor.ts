@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, catchError, throwError } from "rxjs";
+import { LocalStorageService } from "../storage/local-storage.service";
 
 @Injectable({
   providedIn:'root'
@@ -9,10 +10,11 @@ import { Observable, catchError, throwError } from "rxjs";
 export class AuthInterceptorService implements HttpInterceptor{
   constructor(
     private router: Router,
+    private localStorageService: LocalStorageService
   ){}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token:string | null= localStorage.getItem('token')
+    const token:string | null= this.localStorageService.getItem<string>('token')
     let request = req;
 
     if (token){

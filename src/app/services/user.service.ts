@@ -4,13 +4,32 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
-interface User{
-  name:string;
-  email:string;
-  phone: string;
-  role: string;
-  id_d?: string;
+// interface User{
+//   name:string;
+//   email:string;
+//   phone: string;
+//   role: string;
+//   id_d?: string;
 
+// }
+
+interface IIntranetUsuarios{
+  n_ide:           string;
+  password:        string;
+  mail?:           string;
+  nombre?:         string;
+  fecha?:          Date | null;
+  usuario?:        string;
+  estado?:         string;
+  peticiones?:     string;
+  incidentes?:     string;
+  fecha_password?: Date | null;
+  fecha_retiro?:   Date | null;
+  c_emp?:          string;
+  bloqueado?:      string;
+  salt?:           string;
+  roles_id:        number;
+  perfiles_id:     number;
 }
 
 @Injectable({
@@ -18,7 +37,7 @@ interface User{
 })
 
 export class UserService {
-  private readonly API_URL=`${environment.api}/user`;
+  private readonly API_URL=`${environment.api}/intranet-usuarios`;
   private contUser$ = new BehaviorSubject<number>(0)
 
   get totalUsers(): Observable<number>{
@@ -51,14 +70,14 @@ export class UserService {
   //   return this.userData
   // }
 
-  addNewUser(user: User): Observable<User>{
+  addNewUser(user: IIntranetUsuarios): Observable<IIntranetUsuarios>{
     const body={...user};
-    delete body.id_d
+    //delete body.n_ide
     //console.log(this.API_URL, body)
-    return this.http.post<User>(this.API_URL, body)
+    return this.http.post<IIntranetUsuarios>(this.API_URL, body)
   }
-  getUsers(): Observable<User[]>{
-    return this.http.get<User[]>(this.API_URL)
+  getUsers(): Observable<IIntranetUsuarios[]>{
+    return this.http.get<IIntranetUsuarios[]>(this.API_URL)
   }
 
   deleteUsers(id: string): Observable<void>{
@@ -66,9 +85,9 @@ export class UserService {
     return this.http.delete<void>(`${this.API_URL}/${id}`)
   }
 
-  updateUsers(user: User, id_d:string): Observable<void>{
+  updateUsers(user: IIntranetUsuarios, n_ide:string): Observable<void>{
     const body={...user};
-    return this.http.put<void>(`${this.API_URL}/${id_d}`,body)
+    return this.http.put<void>(`${this.API_URL}/${n_ide}`,body)
   }
 
 }
