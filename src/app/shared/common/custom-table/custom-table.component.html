@@ -1,6 +1,10 @@
 <div class="itemList">
-  <table class="customTable" >
-
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 12345" #input>
+  </mat-form-field>
+  <!-- <table class="customTable" > -->
+  <table class="customTable">
     <thead>
       <tr>
         <th *ngFor="let columnHead of tableData.headers">{{columnHead.description}}</th>
@@ -9,7 +13,8 @@
     </thead>
     <tbody>
       <!-- <tr *ngFor="let us of usersData"> -->
-      <tr *ngFor="let columnsData of tableData.dataColumns">
+
+       <tr *ngFor="let columnsData of tableData.dataColumns">
         <td *ngFor="let columnsHead of tableData.headers">
           <span class="actions" *ngIf="columnsHead.field==='actions'">
             <fa-icon (click)="onUpdateClick(columnsData)" class="icon" [icon]="getIcon('faPencil')"></fa-icon>
@@ -18,9 +23,48 @@
           <span *ngIf="columnsHead.field!=='actions'">
             {{columnsData[columnsHead.field]}}
           </span>
-
+        </td>
       </tr>
     </tbody>
   </table>
+
+
+
+  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table> -->
+
+
 </div>
 <p>Count: {{countRender()}}</p>

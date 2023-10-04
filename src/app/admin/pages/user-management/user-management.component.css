@@ -81,7 +81,7 @@ form input::placeholder {
 }
 
 
-table.customTable{
+/* table.customTable{
   width: 100%;
   background-color: white;
   border-collapse: collapse;
@@ -100,5 +100,28 @@ table.customTable td, table.customTable th{
 
 table.customTable th{
   background-color: #7ea8f8;
+} */
+
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+.mat-mdc-table {
+  width: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.mat-column-name {
+  height: 100px;
 }
 

@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 
 interface IIntranetUsuarios{
   n_ide:           string;
-  password:        string;
+  password?:        string;
   mail?:           string;
   nombre?:         string;
   fecha?:          Date | null;

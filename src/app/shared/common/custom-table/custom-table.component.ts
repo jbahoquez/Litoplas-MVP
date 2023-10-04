@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnChanges, OnDestroy, SimpleChanges, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import { TableData, DataKeys } from '../../domain';
 import {IconDefinition, faCoffee, faHouse, faTrash, faPencil} from '@fortawesome/free-solid-svg-icons';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 //Body
 // interface TableData {
 //   headers: DataKeys[];
@@ -38,6 +41,9 @@ export class CustomTableComponent implements OnChanges, OnInit, OnDestroy {
     @Output() onDelete = new EventEmitter<any>()
   constructor() { }
 
+  dataSource = new MatTableDataSource(this.tableData.dataColumns);
+
+
   ngOnChanges(changes: SimpleChanges): void {
     console.log('Changes ->', changes)
   }
@@ -65,5 +71,11 @@ export class CustomTableComponent implements OnChanges, OnInit, OnDestroy {
   onDeleteClick(item: any){
     //console.log(item, 'item a eliminar')
     this.onDelete.emit(item)
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.tableData.dataColumns.filter=filterValue.trim().toLowerCase();
   }
 }
