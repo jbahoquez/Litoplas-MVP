@@ -50,7 +50,7 @@ a:hover {
 .nav-container .notification-section .icons{
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0px;
   cursor: pointer;
   font-size: 18px;
 }
@@ -61,4 +61,22 @@ a:hover {
   border-radius: 5px;
   background-color: #ececec;
   cursor: pointer;
+}
+
+
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
 }

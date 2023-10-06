@@ -17,6 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+import {MatMenuModule} from '@angular/material/menu';
+
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -36,7 +39,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
+    MatMenuModule
   ],
   exports: [
     HeaderComponent,
@@ -45,6 +50,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CircleMenuComponent,
     CustomTableComponent,
     SpinnerComponent
+
+
   ]
 })
 export class SharedModule { }

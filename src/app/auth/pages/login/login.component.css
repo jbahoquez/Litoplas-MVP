@@ -47,7 +47,7 @@
   background-repeat: no-repeat;
 }
 .login-container {
-  width: 1300px;
+  width: 67%;
   min-width: 250px;
   /* background-color: rgba(255, 255, 255, 0.699); */
   background-image: linear-gradient(rgba(255, 255, 255, 0.671), rgba(255, 255, 255, 0.788)), url('/assets/planta.png');
@@ -89,7 +89,7 @@
   font-weight: 500;
 }
 
-.form button {
+/* .form button {
   width: 100%;
   border:  1px solid #00bbf0;;
   background: #0092ca;
@@ -100,7 +100,7 @@
 }
 
 .form input {
-  /* #e3e3e3; */
+
   width: 100%;
   border: 3px solid #eaf6f6;
   padding: 10px;
@@ -110,7 +110,7 @@
 
 .form input::placeholder {
   color: grey
-}
+} */
 
 .alert {
   background-color: #ff847c;
@@ -121,3 +121,23 @@
   border: 2px solid #e84a5f;
   text-align: center;
 }
+
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+

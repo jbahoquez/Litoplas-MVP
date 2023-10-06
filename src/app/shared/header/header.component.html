@@ -1,18 +1,40 @@
 <article class="nav-container">
   <div class="menu-section">
     <fa-icon class="icon" [icon]="getIcon('faBars')"></fa-icon>
+
     <img src="/assets/logo-litoplas.png" alt="logo-litoplas">
   </div>
   <div class="notification-section">
     <div class="icons">
-      <a routerLink="dashboard/home" routerLinkActive="menu-active" ><fa-icon class="icon" [icon]="getIcon('faHomeAlt')"></fa-icon></a>
+      <!-- <a routerLink="dashboard/home" routerLinkActive="menu-active" ><fa-icon class="icon" [icon]="getIcon('faHomeAlt')"></fa-icon></a>
       <a routerLink="sda" routerLinkActive="menu-active"><fa-icon class="icon" [icon]="getIcon('faStar')"></fa-icon></a>
       <a routerLink="asd" routerLinkActive="menu-active"><fa-icon class="icon" [icon]="getIcon('faFlag')"></fa-icon></a>
       <a routerLink="asd" routerLinkActive="menu-active"><fa-icon class="icon" [icon]="getIcon('faBell')"></fa-icon></a>
-      <a routerLink="asdd" routerLinkActive="menu-active"><fa-icon class="icon" [icon]="getIcon('faGear')"></fa-icon></a>
+      <a routerLink="asdd" routerLinkActive="menu-active"><fa-icon class="icon" [icon]="getIcon('faGear')"></fa-icon></a> -->
+      <button mat-icon-button (click)="home()" aria-label="Example icon-button with a menu">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_box</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="cerrarSesion()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar sesión</span>
+        </button>
+        <!-- <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button> -->
+        <button mat-menu-item>
+          <mat-icon>password</mat-icon>
+          <span>Cambiar contraseña</span>
+        </button>
+      </mat-menu>
+
     </div>
-    <div class="account-button">
+    <!-- <div class="account-button">
       ST
-    </div>
+    </div> -->
   </div>
 </article>

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {faCoffee, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+
+
 interface Menu {
   id?: number ;
   name: string;
@@ -18,7 +20,8 @@ interface Menu {
 })
 export class CircleMenuComponent implements OnInit {
 
-  @Output() emitData: EventEmitter<number>
+  // @Output() emitData: EventEmitter<number>
+  @Output() emitData: EventEmitter<string>
   @Input() menu: Menu = {
     id: 0,
     name: '',
@@ -30,8 +33,11 @@ export class CircleMenuComponent implements OnInit {
   }
 
   constructor() {
-    this.emitData = new EventEmitter<number>();
+    // this.emitData = new EventEmitter<number>();
+    this.emitData = new EventEmitter<string>();
   }
+
+
 
   ngOnInit(): void {
   }
@@ -50,9 +56,14 @@ export class CircleMenuComponent implements OnInit {
     return this.menu.iconColor ?  `color: ${this.menu.iconColor}` : ''
   }
 
-  onClickButton(menuId: number ) {
+  // onClickButton(menuId: number ) {
 
-    if(menuId) this.emitData.emit(menuId)
+  //   if(menuId) this.emitData.emit(menuId)
+  // }
+
+  onClickButton(menuRuta: string ) {
+
+    if(menuRuta) this.emitData.emit(menuRuta)
   }
 
   hexToRgba(hex: string, opacity: number): string {

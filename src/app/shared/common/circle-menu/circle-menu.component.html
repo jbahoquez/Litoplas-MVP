@@ -1,4 +1,5 @@
-<div class="content" (click)="onClickButton(menu.id || 0)">
+<div class="content" (click)="onClickButton(menu.ruta || '')">
+
   <div class='item' [style]="getColor()">
     <i class="">
       <fa-icon class="icon" [style]="getColorFont()" [icon]="menu.icon"></fa-icon>

@@ -8,6 +8,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import Swal from 'sweetalert2';
+import { Observable, Observer } from 'rxjs';
 
 interface UrlParams {
   userID: string
@@ -90,6 +92,11 @@ interface DataKeys {
   field: string;
 }
 
+export interface ExampleTab {
+  label: string;
+  content: string;
+}
+
 
 @Component({
   selector: 'app-user-management',
@@ -98,7 +105,7 @@ interface DataKeys {
 
 })
 export class UserManagementComponent implements OnInit {
-  displayedColumns: string[] = ['n_ide', 'nombre', 'mail', 'c_emp'];
+  displayedColumns: string[] = ['n_ide', 'nombre', 'mail', 'c_emp', 'acciones'];
   //dataSource: MatTableDataSource<UserData>;
 
   dataSource: MatTableDataSource<IIntranetUsuarios>;
@@ -107,8 +114,20 @@ export class UserManagementComponent implements OnInit {
   prueba2: IIntranetUsuarios[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  asyncTabs: Observable<ExampleTab[]>;
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private userService: UserService) {
-    const Iusers = Array.from({length: 1020}, (_, k) => createNewUser(k + 1));
+
+    this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
+      setTimeout(() => {
+        observer.next([
+          {label: 'First', content: 'Content 1'},
+          {label: 'Second', content: 'Content 2'},
+          {label: 'Third', content: 'Content 3'},
+        ]);
+      }, 1000);
+    });
+    //const Iusers = Array.from({length: 1020}, (_, k) => createNewUser(k + 1));
     //const intranet=Array.from({length:1020},(_,k) => this.getUsersReturn())
 
     console.log('0')
@@ -796,21 +815,56 @@ export class UserManagementComponent implements OnInit {
   //   this.dataSource.filter = filterValue.trim().toLowerCase();
   // }
 
+  editarUsuario(usuario: any) {
+    // Lógica para editar el usuario aquí
+  }
+
+
+
+  resetearPassword(usuario: IIntranetUsuarios) {
+    // Lógica para restablecer la contraseña del usuario aquí
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: 'Restrablecer contraseña?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, restablecer!',
+      cancelButtonText: 'No, cancelar!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Contraseña restablecida!',
+          `Se envia contraseña al correo ${usuario.mail}`,
+          'success'
+
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'Cancelado por el usuario',
+          'error'
+        )
+      }
+    })
+
+  }
+
+  colorText():string{
+    return 'red';
+  }
+
 }
 
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
 
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
-
-
-}

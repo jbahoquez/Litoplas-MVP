@@ -15,6 +15,10 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { PasswordManagementComponent } from './pages/password-management/password-management.component';
+import { MatIconModule } from '@angular/material/icon';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
     UserManagementComponent,
     AdminManagementComponent,
     TableInfoComponent,
-    TextTransformPipe
+    TextTransformPipe,
+    PasswordManagementComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +40,10 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    MatTabsModule,
+    MatButtonToggleModule
 
   ]
 })

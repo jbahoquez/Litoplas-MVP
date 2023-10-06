@@ -3,6 +3,7 @@ import {faCoffee, faHouse, faClose, faHamburger, faCar,  IconDefinition, faMessa
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OptionsModalComponent } from '../../components/options-modal/options-modal.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { Router } from '@angular/router';
 
 interface Menu {
   id?: number;
@@ -11,6 +12,7 @@ interface Menu {
   icon: IconDefinition;
   color?: string;
   iconColor?: string;
+  ruta?: string;
 }
 
 interface icons {
@@ -36,6 +38,7 @@ const icons: any = {
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
 
   messageIcon: IconDefinition = faMessage;
 
@@ -98,7 +101,8 @@ export class HomeComponent implements OnInit {
       description: 'admin user',
       icon: this.getIcon('faHouse'),
       color: '#F91000',
-      iconColor: '#000'
+      iconColor: '#000',
+      ruta:'/admin/user-management'
     },
     {
       id:2,
@@ -135,18 +139,28 @@ export class HomeComponent implements OnInit {
 
   ];
 
-  constructor(private bottomSheet: MatBottomSheet) { }
+  constructor(private bottomSheet: MatBottomSheet, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  menuClicked(id: number) {
-    // alert(`menu clickeado ${id}`);
+  // menuClicked(id: number) {
+  //   // alert(`menu clickeado ${id}`);
+  //   // const hostname = window.location.hostname;
+  //   // alert(`Nombre del equipo ${hostname}`)
+  //   // const modalRef = this.modalService.open(OptionsModalComponent);
+  //   // modalRef.componentInstance.menuId = id;
+  //   //this.bottomSheet.open(OptionsModalComponent);
+  // }
+
+  menuClicked(ruta: string) {
+    // alert(`menu clickeado ${ruta}`);
     // const hostname = window.location.hostname;
     // alert(`Nombre del equipo ${hostname}`)
     // const modalRef = this.modalService.open(OptionsModalComponent);
     // modalRef.componentInstance.menuId = id;
     //this.bottomSheet.open(OptionsModalComponent);
+    this.router.navigate([ruta]);
   }
 
 }

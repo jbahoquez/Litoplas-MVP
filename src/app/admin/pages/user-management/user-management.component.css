@@ -12,13 +12,18 @@
 }
 
 .userForm form{
+  margin-top: 20px;
   display: flex;
   gap: 30px;
   align-items: flex-end;
   flex-wrap: wrap;
 }
 
-.userForm form .form-group{
+mat-form-field {
+  width: 100%; /* Ajusta el ancho según tus necesidades */
+}
+
+/* .userForm form .form-group{
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -58,7 +63,7 @@ form button[disabled]{
 }
 
 form input {
-  /* #e3e3e3; */
+  #e3e3e3; --- cometado
   width: 100%;
   border: 3px solid #eaf6f6;
   padding: 10px;
@@ -68,7 +73,7 @@ form input {
 
 form input::placeholder {
   color: grey
-}
+} */
 
 .alert {
   background-color: #ff847c;
@@ -114,6 +119,7 @@ table {
 
 td, th {
   width: 25%;
+  /* height: 10px; */
 }
 .mat-mdc-table {
   width: 100%;
@@ -124,4 +130,50 @@ td, th {
 .mat-column-name {
   height: 100px;
 }
+
+.horizontal-buttons {
+  width: auto;
+  /* height: 100px; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+
+/* .mat-cell.horizontal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+} */
+
+.mat-tab-label {
+  color: red;
+}
+
+.mat-tab-label.mat-tab-label-active {
+  color: blueviolet; /* Color para la pestaña activa */
+}
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
 

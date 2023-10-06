@@ -17,6 +17,7 @@ interface Login {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  hide = true;
 
   username: string = '';
   password: string = '';
